@@ -1,0 +1,46 @@
+{% extends 'index.html.twig' %}
+
+{% block title %}Hello
+{% endblock %}
+
+{% block body %}
+	<h1>Bienvenue sur le site de notre restaurant</h1>
+{% endblock %}
+
+{% block menu %}
+		<!-- Menu Filters -->
+	<div class="container isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+		<div class="row" data-aos="fade-up" data-aos-delay="100">
+			<div class="col-lg-12 d-flex justify-content-center">
+				<ul class="menu-filters isotope-filters">
+					<li data-filter="*" class="filter-active">All</li>
+
+					{% for categorie in categories %}
+						<li data-filter=".filter-{{ categorie.nom }}">{{ categorie.nom }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	<!-- Menu Item -->
+
+		<div class="row isotope-container" data-aos="fade-up" data-aos-delay="200">
+			{% for categorie in categories %}
+				{% for plat in plats %}
+					<div class="col-lg-6 menu-item isotope-item filter-{{ categorie.nom }}">
+						<img src="assets/img/menu/lobster-bisque.jpg" class="menu-img" alt="">
+						<div class="menu-content">
+							<a href="#">{{ plat.nom }}</a>
+							<span>{{plat.prix}}</span>
+						</div>
+						<div class="menu-ingredients">
+							{{ plat.description }}
+						</div>
+					</div>
+				{% endfor %}
+			{% endfor %}
+
+		</div>
+	</div>
+
+{% endblock %}
